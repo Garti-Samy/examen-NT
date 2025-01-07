@@ -8,9 +8,11 @@ $(document).ready(function () {
     const $citationAuthor = $('#citation-author');
     const $citationDescription = $('#citation-description');
     const $citationPhoto = $('#citation-photo');
-
+    const $loadercitation=$('#loader-contain');
     // Afficher un texte de chargement pendant l'appel API
-    $citationText.text("Chargement de la citation...");
+    $citationText.text("Le suivant arrive...");
+    $loadercitation.show();
+  
 
     // Appel AJAX pour récupérer les citations
     $.ajax({
@@ -22,10 +24,10 @@ $(document).ready(function () {
         if (data && Array.isArray(data) && data.length > 0) {
           const randomCitation = data[Math.floor(Math.random() * data.length)];
           $citationText.text(randomCitation.Citation || "Citation indisponible.");
+          $loadercitation.hide();
           $citationAuthor.text(randomCitation.Auteur || "Auteur inconnu.");
           $citationDescription.text(randomCitation.Description || "");
           $citationPhoto.attr('src', randomCitation.Photo ? 'img/' + randomCitation.Photo : "img/default-avatar.png");
-
           $citationPhoto.attr('alt', randomCitation.Auteur || "Auteur");
         } else {
           $citationText.text("Aucune citation disponible.");
@@ -36,6 +38,9 @@ $(document).ready(function () {
       }
     });
   }
+
+
+  
 
   // Charger une citation initiale
   fetchCitations();
