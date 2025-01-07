@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="MonPWA">
+    <link rel="apple-touch-icon" href="/img/idea.png">
+    <title>Citation de Grand Noms</title>
+</head>
+
+<body class="bg-black text-white min-h-screen flex items-center justify-center">
+
+
+
+
+    <div id="citation-container" class="text-center max-w-4xl mx-auto p-6">
+        <blockquote class="text-2xl font-semibold italic text-gray-300 leading-relaxed">
+            <p id="citation-text">Chargement de la citation...</p>
+        </blockquote>
+        <div class="flex items-center justify-center mt-6">
+            <img id="citation-photo" src="" alt="Auteur" class="rounded-full w-12 h-12 mr-4">
+            <div>
+                <p id="citation-author" class="text-lg font-bold">Auteur</p>
+                <p id="citation-description" class="text-sm text-gray-500">Description</p>
+            </div>
+        </div>
+        <button id="refreshButton" class="mt-6 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Refresh</button>
+
+
+
+        <div id="imageContainer" class="hidden mt-8">
+            <img id="infoImage" src="img/infos.webp" alt="Informations" class="w-auto h-auto mx-auto rounded-xl" />
+          </div>
+    
+       
+        <div class="mt-9  mx-auto  flex items-center justify-center"> 
+            <button id="installAppButton" class="hidden bg-yellow-400 text-black py-2 px-5 rounded-lg font-bold text-lg cursor-pointer">
+                Installer l'application
+            </button>
+            <button id="iosbutton" class="hidden bg-blue-500 text-white font-bold py-2 px-4 rounded-lg shadow-lg mt-4">
+                Comment installer sur IOS ?
+            </button>
+        </div>
+    </div>
+    
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/js/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker enregistré avec succès:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('Échec de l\'enregistrement du ServiceWorker:', error);
+                    });
+            });
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mobile-detect/1.4.5/mobile-detect.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="js/app.js"></script>
+    
+</body>
+
+</html>
