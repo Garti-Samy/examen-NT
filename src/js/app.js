@@ -12,6 +12,10 @@ $(document).ready(function () {
     // Afficher un texte de chargement pendant l'appel API
     $citationText.text("Le suivant arrive...");
     $loadercitation.show();
+    $citationAuthor.hide();
+    $citationDescription.hide();
+    $citationPhoto.hide();
+
   
 
     // Appel AJAX pour récupérer les citations
@@ -23,12 +27,12 @@ $(document).ready(function () {
         // Vérifier que l'API renvoie des données valides
         if (data && Array.isArray(data) && data.length > 0) {
           const randomCitation = data[Math.floor(Math.random() * data.length)];
-          $citationText.text(randomCitation.Citation || "Citation indisponible.");
+          $citationText.text(randomCitation.Citation || "Citation indisponible.").show();
           $loadercitation.hide();
-          $citationAuthor.text(randomCitation.Auteur || "Auteur inconnu.");
-          $citationDescription.text(randomCitation.Description || "");
-          $citationPhoto.attr('src', randomCitation.Photo ? 'img/' + randomCitation.Photo : "img/default-avatar.png");
-          $citationPhoto.attr('alt', randomCitation.Auteur || "Auteur");
+          $citationAuthor.text(randomCitation.Auteur || "Auteur inconnu.").show();
+          $citationDescription.text(randomCitation.Description || "").show();
+          $citationPhoto.attr('src', randomCitation.Photo ? 'img/' + randomCitation.Photo : "img/default-avatar.png").show();
+          $citationPhoto.attr('alt', randomCitation.Auteur || "Auteur").show();
         } else {
           $citationText.text("Aucune citation disponible.");
         }
